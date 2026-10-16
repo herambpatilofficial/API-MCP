@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "api-mcp-server"
+version = "0.2.0"
+description = "Lightweight and extensible MCP server for defining and executing API tools (Python port of AdamShannag/api-mcp-server)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["mcp", "model-context-protocol", "api", "server"]
+dependencies = [
+    "mcp>=1.9,<2",
+    "httpx>=0.25",
+]
+
+[project.optional-dependencies]
+sse = ["starlette>=0.37", "uvicorn>=0.30"]
+metrics = ["prometheus-client>=0.20"]
+all = ["starlette>=0.37", "uvicorn>=0.30", "prometheus-client>=0.20"]
+
+[project.scripts]
+api-mcp-server-py = "api_mcp_server.cli:main"
+
+[tool.setuptools]
+packages = ["api_mcp_server"]
